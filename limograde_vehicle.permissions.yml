@@ -1,0 +1,22 @@
+add vehicle entities:
+  title: 'Create new vehicles'
+
+administer vehicle entities:
+  title: 'Administer vehicles'
+  description: 'Allow to access the administration form to configure vehicles.'
+  restrict access: true
+
+delete vehicle entities:
+  title: 'Delete vehicles'
+
+edit vehicle entities:
+  title: 'Edit vehicles'
+
+access vehicle overview:
+  title: 'Access the vehicles overview page'
+
+view published vehicle entities:
+  title: 'View published vehicles'
+
+view unpublished vehicle entities:
+  title: 'View unpublished vehicles'

@@ -1,0 +1,5 @@
+vehicle.admin.structure.settings:
+  title: Vehicles
+  description: 'Configure vehicles'
+  route_name: vehicle.settings
+  parent: system.admin_structure

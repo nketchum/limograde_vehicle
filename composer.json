@@ -1,0 +1,14 @@
+{
+  "name": "drupal/limograde_vehicle",
+  "type": "drupal-module",
+  "description": "Provides a vehicle entity for Limograde.",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "homepage": "https://www.drupal.org/project/limograde_vehicle",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/limograde_vehicle",
+    "source": "http://cgit.drupalcode.org/limograde_vehicle"
+  },
+  "require": { }
+}
