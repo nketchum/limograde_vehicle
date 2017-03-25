@@ -34,15 +34,11 @@ class VehicleForm extends ContentEntityForm {
 
     switch ($status) {
       case SAVED_NEW:
-        drupal_set_message($this->t('Created %label.', [
-          '%label' => $entity->label(),
-        ]));
+        drupal_set_message($this->t('Created vehicle.'));
         break;
 
       default:
-        drupal_set_message($this->t('Saved %label.', [
-          '%label' => $entity->label(),
-        ]));
+        drupal_set_message($this->t('Saved vehicle.'));
     }
     $form_state->setRedirect('entity.vehicle.canonical', ['vehicle' => $entity->id()]);
   }

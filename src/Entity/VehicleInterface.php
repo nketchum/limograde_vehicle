@@ -13,27 +13,6 @@ use Drupal\user\EntityOwnerInterface;
  */
 interface VehicleInterface extends  ContentEntityInterface, EntityChangedInterface, EntityOwnerInterface {
 
-  // Add get/set methods for your configuration properties here.
-
-  /**
-   * Gets the Vehicle name.
-   *
-   * @return string
-   *   Name of the Vehicle.
-   */
-  public function getName();
-
-  /**
-   * Sets the Vehicle name.
-   *
-   * @param string $name
-   *   The Vehicle name.
-   *
-   * @return \Drupal\limograde_vehicle\Entity\VehicleInterface
-   *   The called Vehicle entity.
-   */
-  public function setName($name);
-
   /**
    * Gets the Vehicle creation timestamp.
    *

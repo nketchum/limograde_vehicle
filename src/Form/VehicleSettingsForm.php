@@ -48,7 +48,7 @@ class VehicleSettingsForm extends FormBase {
    *   Form definition array.
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    $form['vehicle_settings']['#markup'] = 'Settings form for Vehicle entities. Manage field settings here.';
+    $form['vehicle_settings']['#markup'] = 'Manage field settings for vehicles.';
     return $form;
   }
 

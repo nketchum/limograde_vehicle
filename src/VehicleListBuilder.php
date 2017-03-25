@@ -21,7 +21,6 @@ class VehicleListBuilder extends EntityListBuilder {
    */
   public function buildHeader() {
     $header['id'] = $this->t('Vehicle ID');
-    $header['name'] = $this->t('Name');
     return $header + parent::buildHeader();
   }
 
@@ -31,14 +30,6 @@ class VehicleListBuilder extends EntityListBuilder {
   public function buildRow(EntityInterface $entity) {
     /* @var $entity \Drupal\limograde_vehicle\Entity\Vehicle */
     $row['id'] = $entity->id();
-    $row['name'] = $this->l(
-      $entity->label(),
-      new Url(
-        'entity.vehicle.edit_form', array(
-          'vehicle' => $entity->id(),
-        )
-      )
-    );
     return $row + parent::buildRow($entity);
   }
 
