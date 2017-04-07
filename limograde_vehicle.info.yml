@@ -1,4 +1,4 @@
-name: Limograde vehicle
+name: LimoGrade vehicle
 type: module
 description: Provides a vehicle entity for Limograde.
 core: 8.x
