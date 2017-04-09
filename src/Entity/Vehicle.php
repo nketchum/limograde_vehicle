@@ -44,11 +44,11 @@ use Drupal\user\UserInterface;
  *     "status" = "status",
  *   },
  *   links = {
- *     "canonical" = "/vehicle/vehicle/{vehicle}",
- *     "add-form" = "/vehicle/vehicle/add",
- *     "edit-form" = "/vehicle/vehicle/{vehicle}/edit",
- *     "delete-form" = "/vehicle/vehicle/{vehicle}/delete",
- *     "collection" = "/vehicle/vehicle",
+ *     "canonical" = "/vehicle/{vehicle}",
+ *     "add-form" = "/vehicle/add",
+ *     "edit-form" = "/vehicle/{vehicle}/edit",
+ *     "delete-form" = "/vehicle/{vehicle}/delete",
+ *     "collection" = "/vehicle",
  *   },
  *   field_ui_base_route = "vehicle.settings"
  * )
