@@ -3,3 +3,11 @@ type: module
 description: Provides a vehicle entity for Limograde.
 core: 8.x
 package: Custom
+dependencies:
+  - field_group
+  - inline_entity_form
+  - limograde_company
+  - options
+  - range
+  - viewfield
+  - views

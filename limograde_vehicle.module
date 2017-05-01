@@ -1,0 +1,113 @@
+<?php
+
+use Drupal\Core\Render\Element;
+
+/**
+ * Disable table-dragging on vehicle entity form tables.
+ */
+function limograde_vehicle_theme_registry_alter(&$theme_registry) {
+  $theme_registry['inline_entity_form_entity_table'] = array(
+    'render element' => 'form',
+    'function' => 'theme_limograde_vehicle_inline_entity_form_entity_table',
+    'theme path' => 'modules/custom/limograde_vehicle',
+  );
+}
+
+/**
+ * Disable table-dragging on vehicle entity form tables.
+ *
+ * @param array $variables
+ *   Contains the form element data from $element['entities'].
+ */
+function theme_limograde_vehicle_inline_entity_form_entity_table($variables) {
+  $renderer = \Drupal::service('renderer');
+  $form = $variables['form'];
+  $entity_type = $form['#entity_type'];
+
+  $fields = $form['#table_fields'];
+
+  // Sort the fields by weight.
+  uasort($fields, '\Drupal\Component\Utility\SortArray::sortByWeightElement');
+
+  $header = [];
+  // Add header columns for each field.
+  $first = TRUE;
+  foreach ($fields as $field_name => $field) {
+    $column = ['data' => $field['label']];
+    // The first column gets a special class.
+    if ($first) {
+      $column['class'] = ['ief-first-column-header'];
+      $first = FALSE;
+    }
+    $header[] = $column;
+  }
+  $header[] = t('Operations');
+
+  // Build an array of entity rows for the table.
+  $rows = [];
+  foreach (Element::children($form) as $key) {
+    /** @var \Drupal\Core\Entity\FieldableEntityInterface $entity */
+    $entity = $form[$key]['#entity'];
+    $row_classes = ['ief-row-entity'];
+    $cells = [];
+    // Add a special class to rows that have a form underneath, to allow
+    // for additional styling.
+    if (!empty($form[$key]['form'])) {
+      $row_classes[] = 'ief-row-entity-form';
+    }
+
+    foreach ($fields as $field_name => $field) {
+      $data = '';
+      if ($field['type'] == 'label') {
+        $data = $variables['form'][$key]['#label'];
+      }
+      elseif ($field['type'] == 'field' && $entity->hasField($field_name)) {
+        $display_options = ['label' => 'hidden'];
+        if (isset($field['display_options'])) {
+          $display_options += $field['display_options'];
+        }
+        $data = $entity->get($field_name)->view($display_options);
+      }
+      elseif ($field['type'] == 'callback') {
+        $arguments = [
+          'entity' => $entity,
+          'variables' => $variables,
+        ];
+        if (isset($field['callback_arguments'])) {
+          $arguments = array_merge($arguments, $field['callback_arguments']);
+        }
+
+        $data = call_user_func_array($field['callback'], $arguments);
+      }
+
+      $cells[] = ['data' => $data, 'class' => ['inline-entity-form-' . $entity_type . '-' . $field_name]];
+    }
+
+    // Add the buttons belonging to the "Operations" column.
+    $cells[] = $renderer->render($form[$key]['actions']);
+    // Create the row.
+    $rows[] = ['data' => $cells, 'class' => $row_classes];
+    // If the current entity array specifies a form, output it in the next row.
+    if (!empty($form[$key]['form'])) {
+      $row = [
+        ['data' => $renderer->render($form[$key]['form']), 'colspan' => count($fields) + 1],
+      ];
+      $rows[] = ['data' => $row, 'class' => ['ief-row-form'], 'no_striping' => TRUE];
+    }
+  }
+
+  if (!empty($rows)) {
+
+    $table = [
+      '#type' => 'table',
+      '#header' => $header,
+      '#rows' => $rows,
+      '#attributes' => [
+        'id' => 'ief-entity-table-' . $form['#id'],
+        'class' => ['ief-entity-table'],
+      ],
+    ];
+
+    return $renderer->render($table);
+  }
+}

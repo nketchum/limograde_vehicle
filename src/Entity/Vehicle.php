@@ -21,13 +21,13 @@ use Drupal\user\UserInterface;
  *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
  *     "list_builder" = "Drupal\limograde_vehicle\VehicleListBuilder",
  *     "views_data" = "Drupal\limograde_vehicle\Entity\VehicleViewsData",
- *
  *     "form" = {
  *       "default" = "Drupal\limograde_vehicle\Form\VehicleForm",
  *       "add" = "Drupal\limograde_vehicle\Form\VehicleForm",
  *       "edit" = "Drupal\limograde_vehicle\Form\VehicleForm",
  *       "delete" = "Drupal\limograde_vehicle\Form\VehicleDeleteForm",
  *     },
+ *     "inline_form" = "Drupal\limograde_vehicle\Form\VehicleInlineForm",
  *     "access" = "Drupal\limograde_vehicle\VehicleAccessControlHandler",
  *     "route_provider" = {
  *       "html" = "Drupal\limograde_vehicle\VehicleHtmlRouteProvider",
